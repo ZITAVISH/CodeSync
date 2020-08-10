@@ -1,0 +1,95 @@
+Prerequisites
+Python 3.8 [Download] (Python 2.7 < is enough)
+To follow along, you need to have some basic understanding of Python (annotations, modules, functions).
+
+
+
+Installing Virtual Environment And Flask Framework
+Creating Virtual Environments is quite useful while dealing with a handful number of projects with different dependency versions. Virtual Environment helps us to isolate our dependencies totally to the project we are building thereby not breaking the specific different dependencies needed by different projects. We will be using the following command to install virtualenv module using PIP to create Virtual Environment -
+
+
+
+λ pip install virtualenv
+
+
+
+To verify if virtualenv is installed successfully or not we will type the following command which on successful installation will display the installed version -
+
+
+
+λ virtualenv --version
+
+
+
+We will now create a new directory to treat as a virtual environment and develop our project there.
+
+
+
+λ mkdir newFlaskProject
+λ cd newFlaskProject
+λ virtualenv venv
+
+
+
+Now as Our Virtual Environment (venv) is created successfully. We will go ahead and activate it to start with our Flask Server (In windows OS).
+
+
+
+λ venv\scripts\activate
+
+
+
+We can deactivate our Virtual Environment by typing deactivate in our windows command prompt.
+Once activated we can now go ahead and install Flask Framework using the following command -
+
+
+
+λ pip install flask
+
+
+
+Creating Our Flask Server And API
+We will now go ahead and create a hello.py file which will serve as our entry point to the Server.
+
+
+
+from flask import Flask
+
+app = Flask(__name__)
+
+@app.route('/')
+def firstApi():
+  return 'Hello World!!!'
+
+if __name__ == '__main__':
+  app.run()
+
+__name__ is a special variable in Python which evaluates to the name of the current module.
+
+
+We are importing Flask, then creating an instance of Flask to be used by WSGI server and assigning it to an app variable. The constructor accepts the module name as the first parameter. @app.route(rule, options) decorator allows us to execute a function whenever we hit a specific URL (API endpoint in our case) passed as the first parameter as rule. We are executing firstApi() function whenever user hits localhost URL (https://localhost:5000/) in the browser running at Port 5000 (by default) and returning with a response string “Hello World!!!” to be displayed in the browser window. Finally we are starting our server with app.run().
+By default Flask runs at port 5000. We can specify any port number to run at by passing it as argument to the run() method. For example -
+
+app.run(host='127.0.0.1', port=5050)
+
+
+Running Our Server
+
+We can start our server by simply executing the hello.py file using python (Python 3) -
+
+
+λ Python3 hello.py
+
+
+
+If we succeed with all the steps we will be able to see the expected response string in our browser window when we go to http://127.0.0.1:5000 and the following the lines in our python console.
+
+
+
+* Serving Flask app "flsk" (lazy loading)
+* Environment: production WARNING: This is a development server. Do not use it in a production   deployment. Use a production WSGI server instead.
+* Debug mode: off
+* Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+
+
+Flask is really a very powerful framework and supports a lot of features along with JINJA2 as a template engine and WSGI Server.
